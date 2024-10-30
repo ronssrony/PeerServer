@@ -6,13 +6,10 @@ const app = express();
 app.use(cors()) ;
 app.get("/", (req, res, next) => res.send("Hello world!"));
 
-// =======
-
-// == OR ==
-
 const http = require("http");
 
 const server = http.createServer(app);
+const PORT = process.env.PORT || 9000;
 const peerServer = ExpressPeerServer(server, {
 	debug: true,
 	path: "/myapp",
@@ -20,7 +17,7 @@ const peerServer = ExpressPeerServer(server, {
 
 app.use("/peerjs", peerServer);
 
-server.listen(9000 , ()=>{
+server.listen(PORT , ()=>{
     console.log("Peerserver is running")
 });
 
